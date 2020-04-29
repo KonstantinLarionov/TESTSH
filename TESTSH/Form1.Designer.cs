@@ -29,21 +29,13 @@
         private void InitializeComponent()
         {
             this.tableCntry = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,8 +43,21 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.countCountry = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.timeDel = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.countCoin = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.start = new System.Windows.Forms.Button();
+            this.create = new System.Windows.Forms.Button();
+            this.close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tableCntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableCntry
@@ -69,22 +74,12 @@
             this.Column3,
             this.Column5,
             this.Column4});
-            this.tableCntry.Location = new System.Drawing.Point(12, 177);
+            this.tableCntry.Location = new System.Drawing.Point(13, 178);
             this.tableCntry.Name = "tableCntry";
             this.tableCntry.RowHeadersVisible = false;
             this.tableCntry.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tableCntry.Size = new System.Drawing.Size(669, 193);
             this.tableCntry.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 145);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 19);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Созданные страны";
             // 
             // Column1
             // 
@@ -111,6 +106,17 @@
             this.Column4.HeaderText = "Дата создания";
             this.Column4.Name = "Column4";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 145);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(167, 19);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Созданные страны";
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -133,74 +139,6 @@
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.Size = new System.Drawing.Size(669, 193);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 395);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(249, 19);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Мониторинг операций стран";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(161, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(48, 105);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "1 месяц в мс:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(48, 43);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Кол.во стран:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(161, 102);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(12, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 19);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Настройки модели";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(48, 76);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Кол.во монет в год:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(161, 73);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 9;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -237,24 +175,154 @@
             this.dataGridViewTextBoxColumn7.HeaderText = "Дата операции";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(12, 395);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(249, 19);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Мониторинг операций стран";
+            // 
+            // countCountry
+            // 
+            this.countCountry.Location = new System.Drawing.Point(161, 40);
+            this.countCountry.Name = "countCountry";
+            this.countCountry.Size = new System.Drawing.Size(100, 20);
+            this.countCountry.TabIndex = 4;
+            this.countCountry.Text = "100";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(48, 105);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "1 месяц в мс:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(48, 43);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Кол.во стран:";
+            // 
+            // timeDel
+            // 
+            this.timeDel.Location = new System.Drawing.Point(161, 102);
+            this.timeDel.Name = "timeDel";
+            this.timeDel.Size = new System.Drawing.Size(100, 20);
+            this.timeDel.TabIndex = 6;
+            this.timeDel.Text = "3000";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(12, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(165, 19);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Настройки модели";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(48, 76);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(107, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Кол.во монет в год:";
+            // 
+            // countCoin
+            // 
+            this.countCoin.Location = new System.Drawing.Point(161, 73);
+            this.countCoin.Name = "countCoin";
+            this.countCoin.Size = new System.Drawing.Size(100, 20);
+            this.countCoin.TabIndex = 9;
+            this.countCoin.Text = "20";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.start);
+            this.panel1.Controls.Add(this.create);
+            this.panel1.Controls.Add(this.close);
+            this.panel1.Controls.Add(this.tableCntry);
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.panel1.Location = new System.Drawing.Point(-1, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(696, 634);
+            this.panel1.TabIndex = 11;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // start
+            // 
+            this.start.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen;
+            this.start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.start.ForeColor = System.Drawing.Color.DarkGreen;
+            this.start.Location = new System.Drawing.Point(268, 86);
+            this.start.Name = "start";
+            this.start.Size = new System.Drawing.Size(167, 36);
+            this.start.TabIndex = 2;
+            this.start.Text = "Начать торги";
+            this.start.UseVisualStyleBackColor = true;
+            this.start.Click += new System.EventHandler(this.Switcher_Button);
+            // 
+            // create
+            // 
+            this.create.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.create.ForeColor = System.Drawing.Color.DarkRed;
+            this.create.Location = new System.Drawing.Point(268, 40);
+            this.create.Name = "create";
+            this.create.Size = new System.Drawing.Size(167, 36);
+            this.create.TabIndex = 1;
+            this.create.Text = "Создать страны";
+            this.create.UseVisualStyleBackColor = true;
+            this.create.Click += new System.EventHandler(this.Switcher_Button);
+            // 
+            // close
+            // 
+            this.close.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.close.ForeColor = System.Drawing.Color.DarkRed;
+            this.close.Location = new System.Drawing.Point(643, 3);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(50, 36);
+            this.close.TabIndex = 0;
+            this.close.Text = "X";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.Switcher_Button);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(695, 634);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.countCoin);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.timeDel);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.countCountry);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.tableCntry);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.tableCntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,13 +339,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox countCountry;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox timeDel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox countCoin;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -285,6 +353,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button close;
+        private System.Windows.Forms.Button create;
+        private System.Windows.Forms.Button start;
     }
 }
 
