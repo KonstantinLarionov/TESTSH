@@ -26,7 +26,7 @@ namespace TESTSH
                 tableCntry.Rows.Add(i, country.Name, 0, 0, country.DateCreate);
             }
 
-            Task genCoins = new Task(()=> 
+            Task mainLife = new Task(()=> 
             {
                 int countYear = 0;
                 do
@@ -40,12 +40,25 @@ namespace TESTSH
                        });
                     });
                     MessageBox.Show("Начало " + countYear + " года");
+                    for (int i = 0; i < 12; i++)
+                    {
+                        #region TradingCountry
+                        for (int j = 0; j < Сountries.Count; j++)
+                        {   
+                            for (int k = 1; k < 5; k++)//Можно сделать случайный выбор кто с кем торгует
+                            {
+
+                            }
+                        }
+                        #endregion
+                        Thread.Sleep(60000);
+                    }
                     Thread.Sleep(1200000); // 20 min equal 1 year
                 }
                 while (true);
                
             });
-            genCoins.Start();
+            mainLife.Start();
         }
 
         private void Switcher_Button(object sender, EventArgs e)
