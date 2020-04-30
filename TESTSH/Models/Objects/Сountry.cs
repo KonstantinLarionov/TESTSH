@@ -12,6 +12,7 @@ namespace TESTSH.Models.Objects
         public int Number { get; set; }
         public string Name { get; private set; }
         public List<Coin> Coins { get; private set; } = new List<Coin>();
+        public List<Balance> HistoryBalance { get; set; } = new List<Balance>();
         public List<Operation> Operations { get; private set; } = new List<Operation>();
         public DateTime DateCreate { get; private set; }
         public int CanSpend { get; set; }
@@ -52,8 +53,12 @@ namespace TESTSH.Models.Objects
             return Coins.Where(x => x.Symbol == "Coin:" + Name).ToList();
         }
 
+        public void WriteBalance(int year, int month)
+        {
+            HistoryBalance.Add(new Balance(year, month, Coins.Count));
+        }
 
-        public bool AddOperation(TypeOperation type, int amount, Сountry country)
+        public bool AddOperation(TypeOperation type, int amount, Сountry country, int month, int years)
         {
             if (amount < CanSpend && amount < country.CanSpend)// Проверка на половину депо
             {
@@ -67,15 +72,15 @@ namespace TESTSH.Models.Objects
                             ReceiptCoins(amount, "Coin:" + country.Name);
                             country.ExpenditureCoins(amount);
 
-                            SaveData(type, amount, country, id);
-                            SaveData(type, amount, this, id);
+                            SaveData(type, amount, country, id, month, years);
+                            SaveData(type, amount, this, id, month, years);
                             break;
                         case TypeOperation.Expenditure:
                             ExpenditureCoins(amount);
                             country.ReceiptCoins(amount, "Coin:" + country.Name);
 
-                            SaveData(type, amount, country, id);
-                            SaveData(type, amount, this, id);
+                            SaveData(type, amount, country, id, month, years);
+                            SaveData(type, amount, this, id, month, years);
                             break;
                         default:
                             break;
@@ -113,9 +118,16 @@ namespace TESTSH.Models.Objects
 
         }
 
-        private void SaveData(TypeOperation type, int amount, Сountry country, int id)
+        private void SaveData(TypeOperation type, int amount, Сountry country, int id, int month, int years)
         {
-            Operations.Add(new Operation() { Id = id, Amount = amount, Type = type, CountryFrom = country, DateCreate = DateTime.Now });
+            if (type == TypeOperation.Expenditure)
+            {
+                Operations.Add(new Operation() { Id = id, Amount = amount, Type = type, CountryTo = country, DateCreate = DateTime.Now, Month = month, Year = years });
+            }
+            else
+            {
+                Operations.Add(new Operation() { Id = id, Amount = amount, Type = type, CountryFrom = country, DateCreate = DateTime.Now, Month = month, Year = years });
+            }
         }
     }
 }

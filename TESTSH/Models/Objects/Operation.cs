@@ -17,6 +17,8 @@ namespace TESTSH.Models.Objects
         public int Amount { get; set; }
         public Сountry CountryFrom { get; set; }
         public Сountry CountryTo { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
         public DateTime DateCreate { get; set; }
     }
 }

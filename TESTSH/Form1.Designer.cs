@@ -52,11 +52,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.countCoin = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.succTrades = new System.Windows.Forms.CheckBox();
+            this.timeoutOp = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.start = new System.Windows.Forms.Button();
             this.create = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.timeoutOp = new System.Windows.Forms.TextBox();
-            this.succTrades = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tableCntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableOperations)).BeginInit();
             this.panel1.SuspendLayout();
@@ -82,6 +82,7 @@
             this.tableCntry.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tableCntry.Size = new System.Drawing.Size(669, 193);
             this.tableCntry.TabIndex = 0;
+            this.tableCntry.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Switcher_CellClick);
             // 
             // Column1
             // 
@@ -273,6 +274,36 @@
             this.panel1.TabIndex = 11;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // succTrades
+            // 
+            this.succTrades.AutoSize = true;
+            this.succTrades.Checked = true;
+            this.succTrades.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.succTrades.Location = new System.Drawing.Point(303, 90);
+            this.succTrades.Name = "succTrades";
+            this.succTrades.Size = new System.Drawing.Size(221, 17);
+            this.succTrades.TabIndex = 14;
+            this.succTrades.Text = "Показывать только успешные трейды";
+            this.succTrades.UseVisualStyleBackColor = true;
+            // 
+            // timeoutOp
+            // 
+            this.timeoutOp.Location = new System.Drawing.Point(173, 132);
+            this.timeoutOp.Name = "timeoutOp";
+            this.timeoutOp.Size = new System.Drawing.Size(100, 20);
+            this.timeoutOp.TabIndex = 13;
+            this.timeoutOp.Text = "3000";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(48, 132);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Таймаут операции:";
+            // 
             // start
             // 
             this.start.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen;
@@ -298,36 +329,6 @@
             this.create.Text = "Создать страны";
             this.create.UseVisualStyleBackColor = true;
             this.create.Click += new System.EventHandler(this.Switcher_Button);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(48, 132);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Таймаут операции:";
-            // 
-            // timeoutOp
-            // 
-            this.timeoutOp.Location = new System.Drawing.Point(173, 132);
-            this.timeoutOp.Name = "timeoutOp";
-            this.timeoutOp.Size = new System.Drawing.Size(100, 20);
-            this.timeoutOp.TabIndex = 13;
-            this.timeoutOp.Text = "3000";
-            // 
-            // succTrades
-            // 
-            this.succTrades.AutoSize = true;
-            this.succTrades.Checked = true;
-            this.succTrades.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.succTrades.Location = new System.Drawing.Point(303, 90);
-            this.succTrades.Name = "succTrades";
-            this.succTrades.Size = new System.Drawing.Size(221, 17);
-            this.succTrades.TabIndex = 14;
-            this.succTrades.Text = "Показывать только успешные трейды";
-            this.succTrades.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

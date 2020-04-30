@@ -65,6 +65,7 @@ namespace TESTSH
                         #region TradingCountry
                         for (int j = 0; j < Сountries.Count; j++)
                         {
+                            Сountries[j].WriteBalance(countYear, i);
                             for (int k = 1; k < 5; k++)//Можно сделать случайный выбор кто с кем торгует, но сделал просто с 4 ближайшими последующими
                             {
                                 Operation operation = new Operation();
@@ -82,27 +83,35 @@ namespace TESTSH
                                 }
                                 try
                                 {
-                                    statusOp = Сountries[j].AddOperation(type, amount, Сountries[j + k]);
+                                    statusOp = Сountries[j].AddOperation(type, amount, Сountries[j + k], i, countYear);
                                 }
                                 catch
                                 {
-                                    statusOp = Сountries[j].AddOperation(type, amount, Сountries[1]);
+                                    statusOp = Сountries[j].AddOperation(type, amount, Сountries[1], i, countYear);
                                 }
+
+                                if (statusOp) // Запись баланса после каждой успешной сделки (для графика) можно отключить
+                                {
+                                    Сountries[j].WriteBalance(countYear, i);
+                                }
+
                                 if (succTrades.Checked)
                                 {
                                     if (statusOp)
+                                    {
                                         ShowOperation(countYear, i, j, k, type, amount); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
+                                    }
                                 }
                                 else
                                 {
                                     ShowOperation(countYear, i, j, k, type, amount); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
                                 }
 
-                                if (TestOver())
-                                {
-                                    MessageBox.Show("Торги закончены.");
-                                    return;
-                                }
+                                //if (TestOver())
+                                //{
+                                //    MessageBox.Show("Торги закончены.");
+                                //    return;
+                                //}
                                 Thread.Sleep(timeoutOp.Text.ToInt());
                             }
                         }
@@ -169,9 +178,16 @@ namespace TESTSH
                 tableCntry.Rows[x.Number].Cells[2].Value = x.Coins.Count;
             });
         }
-
-        #endregion
-    }
+        private void Switcher_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var country = Сountries.Where(x=>x.Name == tableCntry.Rows[e.RowIndex].Cells[1].Value.ToString()).FirstOrDefault(); //Можно взять как объект сразу с DGV
+            Form2 report = new Form2(country);
+            report.ShowDialog();
+                
+            
+        }
+            #endregion
+        }
     public static class EXT
     {
         public static int ToInt(this string str)
