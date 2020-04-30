@@ -70,7 +70,7 @@ namespace TESTSH
                                 Operation operation = new Operation();
                                 Random random = new Random();
                                 TypeOperation type;
-                                int amount = random.Next(1, Сountries[i].MyBalance().Count + 1);
+                                int amount = random.Next(1, Сountries[j].MyBalance().Count + 1);
                                 if (random.Next(0, 2) == 0)
                                 {
                                     type = TypeOperation.Receipt;
@@ -103,7 +103,8 @@ namespace TESTSH
                     }
                     MessageBox.Show("Год закончен. Страны выпускают по " + countCoin.Text + " монет каждая.");
                 }
-                while (true); //TODO: Сюда можно вынести проверку на конец торгов TestOver();
+                while (!TestOver());
+                MessageBox.Show("Торги закончены.");
             });
             mainLife.Start();
         }
