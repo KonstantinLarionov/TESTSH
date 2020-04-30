@@ -103,7 +103,7 @@ namespace TESTSH
                     }
                     MessageBox.Show("Год закончен. Страны выпускают по " + countCoin.Text + " монет каждая.");
                 }
-                while (true);
+                while (true); //TODO: Сюда можно вынести проверку на конец торгов TestOver();
             });
             mainLife.Start();
         }
