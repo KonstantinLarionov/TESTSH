@@ -54,6 +54,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.start = new System.Windows.Forms.Button();
             this.create = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.timeoutOp = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.tableCntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableOperations)).BeginInit();
             this.panel1.SuspendLayout();
@@ -73,7 +75,7 @@
             this.Column3,
             this.Column5,
             this.Column4});
-            this.tableCntry.Location = new System.Drawing.Point(13, 178);
+            this.tableCntry.Location = new System.Drawing.Point(12, 199);
             this.tableCntry.Name = "tableCntry";
             this.tableCntry.RowHeadersVisible = false;
             this.tableCntry.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -110,7 +112,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 145);
+            this.label1.Location = new System.Drawing.Point(12, 167);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(167, 19);
             this.label1.TabIndex = 1;
@@ -187,7 +189,7 @@
             // 
             // countCountry
             // 
-            this.countCountry.Location = new System.Drawing.Point(161, 40);
+            this.countCountry.Location = new System.Drawing.Point(173, 40);
             this.countCountry.Name = "countCountry";
             this.countCountry.Size = new System.Drawing.Size(100, 20);
             this.countCountry.TabIndex = 4;
@@ -199,9 +201,9 @@
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(48, 105);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
+            this.label3.Size = new System.Drawing.Size(120, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "1 месяц в мс:";
+            this.label3.Text = "Таймаут месяца в мс:";
             // 
             // label4
             // 
@@ -215,7 +217,7 @@
             // 
             // timeDel
             // 
-            this.timeDel.Location = new System.Drawing.Point(161, 102);
+            this.timeDel.Location = new System.Drawing.Point(173, 102);
             this.timeDel.Name = "timeDel";
             this.timeDel.Size = new System.Drawing.Size(100, 20);
             this.timeDel.TabIndex = 6;
@@ -244,7 +246,7 @@
             // 
             // countCoin
             // 
-            this.countCoin.Location = new System.Drawing.Point(161, 73);
+            this.countCoin.Location = new System.Drawing.Point(173, 73);
             this.countCoin.Name = "countCoin";
             this.countCoin.Size = new System.Drawing.Size(100, 20);
             this.countCoin.TabIndex = 9;
@@ -253,9 +255,15 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.timeoutOp);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.start);
+            this.panel1.Controls.Add(this.countCoin);
             this.panel1.Controls.Add(this.create);
             this.panel1.Controls.Add(this.tableCntry);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.timeDel);
+            this.panel1.Controls.Add(this.countCountry);
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -268,9 +276,9 @@
             this.start.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen;
             this.start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.start.ForeColor = System.Drawing.Color.DarkGreen;
-            this.start.Location = new System.Drawing.Point(268, 86);
+            this.start.Location = new System.Drawing.Point(279, 102);
             this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(167, 36);
+            this.start.Size = new System.Drawing.Size(167, 50);
             this.start.TabIndex = 2;
             this.start.Text = "Начать торги";
             this.start.UseVisualStyleBackColor = true;
@@ -281,33 +289,48 @@
             this.create.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.create.ForeColor = System.Drawing.Color.DarkRed;
-            this.create.Location = new System.Drawing.Point(268, 40);
+            this.create.Location = new System.Drawing.Point(279, 40);
             this.create.Name = "create";
-            this.create.Size = new System.Drawing.Size(167, 36);
+            this.create.Size = new System.Drawing.Size(167, 49);
             this.create.TabIndex = 1;
             this.create.Text = "Создать страны";
             this.create.UseVisualStyleBackColor = true;
             this.create.Click += new System.EventHandler(this.Switcher_Button);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(48, 132);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Таймаут операции:";
+            // 
+            // timeoutOp
+            // 
+            this.timeoutOp.Location = new System.Drawing.Point(173, 132);
+            this.timeoutOp.Name = "timeoutOp";
+            this.timeoutOp.Size = new System.Drawing.Size(100, 20);
+            this.timeoutOp.TabIndex = 13;
+            this.timeoutOp.Text = "3000";
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(695, 634);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.countCoin);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.timeDel);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.countCountry);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tableOperations);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.tableCntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableOperations)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,6 +364,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button create;
         private System.Windows.Forms.Button start;
+        private System.Windows.Forms.TextBox timeoutOp;
+        private System.Windows.Forms.Label label7;
     }
 }
 

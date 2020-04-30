@@ -57,6 +57,7 @@ namespace TESTSH
                     {
                         x.GenCoins(countCoin.Text.ToInt());
                         ShowCountries(x); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
+                        //TODO: Мониторинг монет у стран
                     });
                     MessageBox.Show("Начало " + countYear + " года");
                     for (int i = 0; i < 12; i++)
@@ -78,13 +79,21 @@ namespace TESTSH
                                 {
                                     type = TypeOperation.Expenditure;
                                 }
-                                Сountries[i].AddOperation(type, amount, Сountries[i + k]);
-                                ShowOperation(countYear, i, k, type, amount); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
+                                try
+                                {
+                                    Сountries[j].AddOperation(type, amount, Сountries[j + k]);
+                                }
+                                catch
+                                {
+                                    Сountries[j].AddOperation(type, amount, Сountries[1]);
+                                }
+                                ShowOperation(countYear, i, j, k, type, amount); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
                                 if (TestOver())
                                 {
                                     MessageBox.Show("Торги закончены.");
                                     return;
                                 }
+                                Thread.Sleep(timeoutOp.Text.ToInt());
                             }
                         }
                         #endregion
@@ -134,11 +143,11 @@ namespace TESTSH
         {
             ControlPaint.DrawBorder(e.Graphics, this.panel1.ClientRectangle, Color.IndianRed, ButtonBorderStyle.Solid);
         }
-        private void ShowOperation(int countYear, int i, int k, TypeOperation type, int amount)
+        private void ShowOperation(int countYear, int j, int i, int k, TypeOperation type, int amount)
         {
             tableOperations.Invoke((MethodInvoker)delegate
             {
-                tableOperations.Rows.Add(countYear, i, Сountries[i].Name, type.ToStr(), amount, Сountries[i + k].Name, DateTime.Now);
+                tableOperations.Rows.Add(countYear, j, Сountries[i].Name, type.ToStr(), amount, Сountries[i + k].Name, DateTime.Now);
             });
         }
 

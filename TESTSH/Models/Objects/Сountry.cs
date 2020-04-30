@@ -50,7 +50,7 @@ namespace TESTSH.Models.Objects
         }
         public void AddOperation(TypeOperation type, int amount, Сountry country)
         {
-            if (amount > Coins.Count / 2)
+            if (amount > MyBalance().Count / 2)
             {
                 return;
             }
