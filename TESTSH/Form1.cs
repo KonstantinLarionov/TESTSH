@@ -82,7 +82,6 @@ namespace TESTSH
                     {
                         x.GenCoins(countCoin.Text.ToInt());
                         ShowCountries(x); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
-                        //TODO: Мониторинг монет у стран
                     });
                     MessageBox.Show("Начало " + countYear + " года");
                     for (int i = 0; i < 12; i++)
@@ -143,7 +142,6 @@ namespace TESTSH
                         }
                         #endregion
 
-                        //TODO: Формирование отчета для каждой страны
                         Thread.Sleep(timeDel.Text.ToInt());
                     }
                     MessageBox.Show("Год закончен. Страны выпускают по " + countCoin.Text + " монет каждая.");
