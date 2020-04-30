@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -43,7 +44,10 @@ namespace TESTSH
                     break;
             }
         }
-
+        private void Update(object sender, EventArgs e)
+        { 
+        
+        }
         private void ModelingLoop()
         {
             Task mainLife = new Task(() =>
@@ -66,6 +70,7 @@ namespace TESTSH
                         for (int j = 0; j < Сountries.Count; j++)
                         {
                             Сountries[j].WriteBalance(countYear, i);
+                            Сountries[j].Coins.OnChange += new EventHandler(Update);
                             for (int k = 1; k < 5; k++)//Можно сделать случайный выбор кто с кем торгует, но сделал просто с 4 ближайшими последующими
                             {
                                 Operation operation = new Operation();
@@ -126,6 +131,7 @@ namespace TESTSH
                 MessageBox.Show("Торги закончены.");
             });
             mainLife.Start();
+            
         }
 
       

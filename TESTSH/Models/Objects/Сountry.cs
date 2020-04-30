@@ -11,11 +11,13 @@ namespace TESTSH.Models.Objects
         public int Id { get; set; }
         public int Number { get; set; }
         public string Name { get; private set; }
-        public List<Coin> Coins { get; private set; } = new List<Coin>();
         public List<Balance> HistoryBalance { get; set; } = new List<Balance>();
         public List<Operation> Operations { get; private set; } = new List<Operation>();
         public DateTime DateCreate { get; private set; }
         public int CanSpend { get; set; }
+
+        public ExtList<Coin> Coins { get; private set; } = new ExtList<Coin>();
+        
 
         public Сountry(int id,string name)
         {
@@ -127,6 +129,23 @@ namespace TESTSH.Models.Objects
             else
             {
                 Operations.Add(new Operation() { Id = id, Amount = amount, Type = type, CountryFrom = country, DateCreate = DateTime.Now, Month = month, Year = years });
+            }
+        }
+    }
+    public class ExtList<T> : List<T>
+    {
+        public event EventHandler OnChange;
+
+        public new T this[int index]
+        {
+            get
+            {
+                return base[index];
+            }
+            set
+            {
+                base[index] = value;
+                if (OnChange != null) OnChange(this, null);
             }
         }
     }
