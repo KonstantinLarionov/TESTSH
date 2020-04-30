@@ -35,7 +35,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tableOperations = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,9 +54,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.start = new System.Windows.Forms.Button();
             this.create = new System.Windows.Forms.Button();
-            this.close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tableCntry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableOperations)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,15 +116,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Созданные страны";
             // 
-            // dataGridView1
+            // tableOperations
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tableOperations.AllowUserToAddRows = false;
+            this.tableOperations.AllowUserToDeleteRows = false;
+            this.tableOperations.AllowUserToResizeColumns = false;
+            this.tableOperations.AllowUserToResizeRows = false;
+            this.tableOperations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tableOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.tableOperations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
@@ -133,12 +132,12 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 429);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.Size = new System.Drawing.Size(669, 193);
-            this.dataGridView1.TabIndex = 2;
+            this.tableOperations.Location = new System.Drawing.Point(12, 429);
+            this.tableOperations.Name = "tableOperations";
+            this.tableOperations.RowHeadersVisible = false;
+            this.tableOperations.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.tableOperations.Size = new System.Drawing.Size(669, 193);
+            this.tableOperations.TabIndex = 2;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -256,12 +255,11 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.start);
             this.panel1.Controls.Add(this.create);
-            this.panel1.Controls.Add(this.close);
             this.panel1.Controls.Add(this.tableCntry);
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel1.Location = new System.Drawing.Point(-1, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(696, 634);
+            this.panel1.Size = new System.Drawing.Size(695, 634);
             this.panel1.TabIndex = 11;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -291,19 +289,6 @@
             this.create.UseVisualStyleBackColor = true;
             this.create.Click += new System.EventHandler(this.Switcher_Button);
             // 
-            // close
-            // 
-            this.close.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.close.ForeColor = System.Drawing.Color.DarkRed;
-            this.close.Location = new System.Drawing.Point(643, 3);
-            this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(50, 36);
-            this.close.TabIndex = 0;
-            this.close.Text = "X";
-            this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.Switcher_Button);
-            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(695, 634);
@@ -315,13 +300,13 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.countCountry);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.tableOperations);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.tableCntry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableOperations)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -337,7 +322,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView tableOperations;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox countCountry;
         private System.Windows.Forms.Label label3;
@@ -354,7 +339,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button close;
         private System.Windows.Forms.Button create;
         private System.Windows.Forms.Button start;
     }

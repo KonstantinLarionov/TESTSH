@@ -30,7 +30,7 @@ namespace TESTSH.Models.Objects
             }
         }
 
-        public void ReceiptCoins(int amount)
+        public void ReceiptCoins(int amount, string fromSymbol)
         {
             for (int i = 0; i < amount; i++)
             {
@@ -44,19 +44,33 @@ namespace TESTSH.Models.Objects
                 Coins.Remove(Coins.LastOrDefault());
             }
         }
-
+        public List<Coin> MyBalance()
+        {
+            return Coins.Where(x => x.Symbol == "Coin:" + Name).ToList();
+        }
         public void AddOperation(TypeOperation type, int amount, Сountry country)
         {
-            switch (type)
+            if (amount > Coins.Count / 2)
             {
-                case TypeOperation.Receipt:
-                    Operations.Add(new Operation() { Amount = amount, Type = type, CountryFrom = country, DateCreate = DateTime.Now });
-                    break;
-                case TypeOperation.Expenditure:
-                    Operations.Add(new Operation() { Amount = amount, Type = type, CountryTo = country, DateCreate = DateTime.Now });
-                    break;
-                default:
-                    break;
+                return;
+            }
+            else
+            {
+                switch (type)
+                {
+                    case TypeOperation.Receipt:
+                        ReceiptCoins(amount, "Coin:" + country.Name);
+                        country.AddOperation(TypeOperation.Expenditure,amount, this);
+                        Operations.Add(new Operation() { Amount = amount, Type = type, CountryFrom = country, DateCreate = DateTime.Now });
+                        break;
+                    case TypeOperation.Expenditure:
+                        ExpenditureCoins(amount);
+                        country.AddOperation(TypeOperation.Receipt,amount, this);
+                        Operations.Add(new Operation() { Amount = amount, Type = type, CountryTo = country, DateCreate = DateTime.Now });
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }

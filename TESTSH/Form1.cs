@@ -27,9 +27,6 @@ namespace TESTSH
         {
             switch (((Button)sender).Name)
             {
-                case "close":
-                    Close();
-                    break;
                 case "create":
                     Сountries = new List<Сountry>();
                     for (int i = 0; i < countCountry.Text.ToInt(); i++)
@@ -40,43 +37,95 @@ namespace TESTSH
                     }
                     break;
                 case "start":
-                    Task mainLife = new Task(() =>
-                    {
-                        int countYear = 0;
-                        do
-                        {
-                            countYear++;
-                            Thread.Sleep(2000);
-                            Сountries.ForEach(x => {
-                                x.GenCoins(countCoin.Text.ToInt());
-                                tableCntry.Invoke((MethodInvoker)delegate {
-                                    tableCntry.Rows[x.Number].Cells[2].Value = x.Coins.Count;
-                                });
-                            });
-                            MessageBox.Show("Начало " + countYear + " года");
-                            for (int i = 0; i < 12; i++)
-                            {
-                                #region TradingCountry
-                                for (int j = 0; j < Сountries.Count; j++)
-                                {
-                                    for (int k = 1; k < 5; k++)//Можно сделать случайный выбор кто с кем торгует
-                                    {
-
-                                    }
-                                }
-                                #endregion
-                                Thread.Sleep(timeDel.Text.ToInt());
-                            }
-                            
-                        }
-                        while (true);
-
-                    });
-                    mainLife.Start();
+                    ModelingLoop();
                     break;
                 default:
                     break;
             }
+        }
+
+        private void ModelingLoop()
+        {
+            Task mainLife = new Task(() =>
+            {
+                int countYear = 0;
+                do
+                {
+                    countYear++;
+                    Thread.Sleep(2000);
+                    Сountries.ForEach(x =>
+                    {
+                        x.GenCoins(countCoin.Text.ToInt());
+                        ShowCountries(x); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
+                    });
+                    MessageBox.Show("Начало " + countYear + " года");
+                    for (int i = 0; i < 12; i++)
+                    {
+                        #region TradingCountry
+                        for (int j = 0; j < Сountries.Count; j++)
+                        {
+                            for (int k = 1; k < 5; k++)//Можно сделать случайный выбор кто с кем торгует, но сделал просто с 4 ближайшими последующими
+                            {
+                                Operation operation = new Operation();
+                                Random random = new Random();
+                                TypeOperation type;
+                                int amount = random.Next(1, Сountries[i].MyBalance().Count + 1);
+                                if (random.Next(0, 2) == 0)
+                                {
+                                    type = TypeOperation.Receipt;
+                                }
+                                else
+                                {
+                                    type = TypeOperation.Expenditure;
+                                }
+                                Сountries[i].AddOperation(type, amount, Сountries[i + k]);
+                                ShowOperation(countYear, i, k, type, amount); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
+                                if (TestOver())
+                                {
+                                    MessageBox.Show("Торги закончены.");
+                                    return;
+                                }
+                            }
+                        }
+                        #endregion
+
+                        //TODO: Формирование отчета для каждой страны
+                        Thread.Sleep(timeDel.Text.ToInt());
+                    }
+                    MessageBox.Show("Год закончен. Страны выпускают по " + countCoin.Text + " монет каждая.");
+                }
+                while (true);
+            });
+            mainLife.Start();
+        }
+
+      
+
+        private bool TestOver()
+        {
+
+            foreach (var country in Сountries)
+            {
+                foreach (var countryInside in Сountries)
+                {
+                    if (!country.Coins.Any(coin => coin.Symbol == "Coin:" + countryInside.Name))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+            //bool result = true;
+            //Сountries.ForEach(x=> {
+            //    Сountries.ForEach(y => {
+            //        if (!x.Coins.Any(coin => coin.Symbol == "Coin:" + y.Name))
+            //        {
+            //            result = false;
+            //            return;
+            //        }
+            //    });
+            //});
+            //return result;
         }
         #endregion
 
@@ -85,7 +134,21 @@ namespace TESTSH
         {
             ControlPaint.DrawBorder(e.Graphics, this.panel1.ClientRectangle, Color.IndianRed, ButtonBorderStyle.Solid);
         }
-        
+        private void ShowOperation(int countYear, int i, int k, TypeOperation type, int amount)
+        {
+            tableOperations.Invoke((MethodInvoker)delegate
+            {
+                tableOperations.Rows.Add(countYear, i, Сountries[i].Name, type.ToStr(), amount, Сountries[i + k].Name, DateTime.Now);
+            });
+        }
+
+        private void ShowCountries(Сountry x)
+        {
+            tableCntry.Invoke((MethodInvoker)delegate
+            {
+                tableCntry.Rows[x.Number].Cells[2].Value = x.Coins.Count;
+            });
+        }
 
         #endregion
     }
@@ -103,5 +166,18 @@ namespace TESTSH
                 return 0;
             }
         }
+        public static string ToStr(this TypeOperation type)
+        {
+            switch (type)
+            {
+                case TypeOperation.Receipt:
+                    return "Приход";
+                case TypeOperation.Expenditure:
+                    return "Расход";
+                default:
+                    return "";
+            }
+        }
+
     }
 }
