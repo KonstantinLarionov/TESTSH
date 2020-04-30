@@ -14,6 +14,7 @@ namespace TESTSH.Models.Objects
         public List<Coin> Coins { get; private set; } = new List<Coin>();
         public List<Operation> Operations { get; private set; } = new List<Operation>();
         public DateTime DateCreate { get; private set; }
+        public int CanSpend { get; set; }
 
         public Сountry(int id,string name)
         {
@@ -28,13 +29,14 @@ namespace TESTSH.Models.Objects
             {
                 Coins.Add(new Coin("Coin:" + Name, 1));
             }
+            CanSpend = Coins.Count / 2;
         }
 
         public void ReceiptCoins(int amount, string fromSymbol)
         {
             for (int i = 0; i < amount; i++)
             {
-                Coins.Add(new Coin("Coin:" + Name, 1));
+                Coins.Add(new Coin(fromSymbol, 1));
             }
         }
         public void ExpenditureCoins(int amount)
@@ -43,30 +45,77 @@ namespace TESTSH.Models.Objects
             {
                 Coins.Remove(Coins.LastOrDefault());
             }
+            CanSpend -= amount;
         }
         public List<Coin> MyBalance()
         {
             return Coins.Where(x => x.Symbol == "Coin:" + Name).ToList();
         }
-        public void AddOperation(TypeOperation type, int amount, Сountry country)
-        { //Тут будет переполнение
 
-            switch (type)
+
+        public bool AddOperation(TypeOperation type, int amount, Сountry country)
+        {
+            if (amount < CanSpend && amount < country.CanSpend)// Проверка на половину депо
             {
-                case TypeOperation.Receipt:
-                    ReceiptCoins(amount, "Coin:" + country.Name);
-                    country.AddOperation(TypeOperation.Expenditure, amount, this);
-                    Operations.Add(new Operation() { Amount = amount, Type = type, CountryFrom = country, DateCreate = DateTime.Now });
-                    break;
-                case TypeOperation.Expenditure:
-                    ExpenditureCoins(amount);
-                    country.AddOperation(TypeOperation.Receipt, amount, this);
-                    Operations.Add(new Operation() { Amount = amount, Type = type, CountryTo = country, DateCreate = DateTime.Now });
-                    break;
-                default:
-                    break;
-            }
+                Random rnd = new Random();
+                int id = rnd.Next(0, 10000000);
+                if (!this.Operations.Any(x => x.Id == id))
+                {
+                    switch (type)
+                    {
+                        case TypeOperation.Receipt:
+                            ReceiptCoins(amount, "Coin:" + country.Name);
+                            country.ExpenditureCoins(amount);
 
+                            SaveData(type, amount, country, id);
+                            SaveData(type, amount, this, id);
+                            break;
+                        case TypeOperation.Expenditure:
+                            ExpenditureCoins(amount);
+                            country.ReceiptCoins(amount, "Coin:" + country.Name);
+
+                            SaveData(type, amount, country, id);
+                            SaveData(type, amount, this, id);
+                            break;
+                        default:
+                            break;
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+            ///При таком подходе будет переполнение ( Хотел сделать красиво через рекурсию :C )
+            //if (!this.Operations.Any(x=>x.Id == id))
+            //{
+            //    switch (type)
+            //    {
+            //        case TypeOperation.Receipt:
+            //            ReceiptCoins(amount, "Coin:" + country.Name);
+            //            country.AddOperation(TypeOperation.Expenditure, amount, this);
+            //            SaveData(type, amount, country, id);
+            //            break;
+            //        case TypeOperation.Expenditure:
+            //            ExpenditureCoins(amount);
+            //            country.AddOperation(TypeOperation.Receipt, amount, this);
+            //            SaveData(type, amount, country, id);
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
+
+        }
+
+        private void SaveData(TypeOperation type, int amount, Сountry country, int id)
+        {
+            Operations.Add(new Operation() { Id = id, Amount = amount, Type = type, CountryFrom = country, DateCreate = DateTime.Now });
         }
     }
 }

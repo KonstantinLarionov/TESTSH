@@ -70,7 +70,8 @@ namespace TESTSH
                                 Operation operation = new Operation();
                                 Random random = new Random();
                                 TypeOperation type;
-                                int amount = random.Next(1, (Сountries[j].MyBalance().Count + 1) / 2);
+                                int amount = random.Next(1, (Сountries[j].MyBalance().Count) / 2);
+                                bool statusOp = false;
                                 if (random.Next(0, 2) == 0)
                                 {
                                     type = TypeOperation.Receipt;
@@ -81,13 +82,22 @@ namespace TESTSH
                                 }
                                 try
                                 {
-                                    Сountries[j].AddOperation(type, amount, Сountries[j + k]);
+                                    statusOp = Сountries[j].AddOperation(type, amount, Сountries[j + k]);
                                 }
                                 catch
                                 {
-                                    Сountries[j].AddOperation(type, amount, Сountries[1]);
+                                    statusOp = Сountries[j].AddOperation(type, amount, Сountries[1]);
                                 }
-                                ShowOperation(countYear, i, j, k, type, amount); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
+                                if (succTrades.Checked)
+                                {
+                                    if (statusOp)
+                                        ShowOperation(countYear, i, j, k, type, amount); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
+                                }
+                                else
+                                {
+                                    ShowOperation(countYear, i, j, k, type, amount); //Можно засунуть в отдельный поток ненагружая операции, но и так много времени потратил
+                                }
+
                                 if (TestOver())
                                 {
                                     MessageBox.Show("Торги закончены.");

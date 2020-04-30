@@ -56,6 +56,7 @@
             this.create = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.timeoutOp = new System.Windows.Forms.TextBox();
+            this.succTrades = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tableCntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableOperations)).BeginInit();
             this.panel1.SuspendLayout();
@@ -255,6 +256,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.succTrades);
             this.panel1.Controls.Add(this.timeoutOp);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.start);
@@ -276,9 +278,9 @@
             this.start.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen;
             this.start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.start.ForeColor = System.Drawing.Color.DarkGreen;
-            this.start.Location = new System.Drawing.Point(279, 102);
+            this.start.Location = new System.Drawing.Point(279, 122);
             this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(167, 50);
+            this.start.Size = new System.Drawing.Size(167, 30);
             this.start.TabIndex = 2;
             this.start.Text = "Начать торги";
             this.start.UseVisualStyleBackColor = true;
@@ -291,7 +293,7 @@
             this.create.ForeColor = System.Drawing.Color.DarkRed;
             this.create.Location = new System.Drawing.Point(279, 40);
             this.create.Name = "create";
-            this.create.Size = new System.Drawing.Size(167, 49);
+            this.create.Size = new System.Drawing.Size(167, 34);
             this.create.TabIndex = 1;
             this.create.Text = "Создать страны";
             this.create.UseVisualStyleBackColor = true;
@@ -314,6 +316,18 @@
             this.timeoutOp.Size = new System.Drawing.Size(100, 20);
             this.timeoutOp.TabIndex = 13;
             this.timeoutOp.Text = "3000";
+            // 
+            // succTrades
+            // 
+            this.succTrades.AutoSize = true;
+            this.succTrades.Checked = true;
+            this.succTrades.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.succTrades.Location = new System.Drawing.Point(303, 90);
+            this.succTrades.Name = "succTrades";
+            this.succTrades.Size = new System.Drawing.Size(221, 17);
+            this.succTrades.TabIndex = 14;
+            this.succTrades.Text = "Показывать только успешные трейды";
+            this.succTrades.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -366,6 +380,7 @@
         private System.Windows.Forms.Button start;
         private System.Windows.Forms.TextBox timeoutOp;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox succTrades;
     }
 }
 
