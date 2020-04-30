@@ -46,7 +46,7 @@ namespace TESTSH.Models.Objects
         {
             for (int i = 0; i < amount; i++)
             {
-                Coins.Remove(Coins.LastOrDefault());
+                Coins.Remove(Coins.Where(x=>x.Symbol == "Coin:" + Name).LastOrDefault());
             }
             CanSpend -= amount;
         }

@@ -36,6 +36,7 @@ namespace TESTSH
                         Сountries.Add(country);
                         tableCntry.Rows.Add(i, country.Name, 0, 0, country.DateCreate);
                     }
+                    Update();
                     break;
                 case "start":
                     ModelingLoop();
@@ -44,10 +45,30 @@ namespace TESTSH
                     break;
             }
         }
-        private void Update(object sender, EventArgs e)
-        { 
-        
+        private void Update()
+        {
+            Task task = new Task(()=> 
+            {
+                while (true)
+                {
+                    Thread.Sleep(100);
+                    Сountries.ForEach(country =>
+                    {
+                        var cCoins = country.Coins.Where(x => x.Symbol == "Coin:" + country.Name).Count();
+                        var ncCoins = country.Coins.Where(x => x.Symbol != "Coin:" + country.Name).Count();
+                        tableCntry.Invoke((MethodInvoker)delegate
+                        {
+                            tableCntry.Rows[country.Number].Cells[2].Value = cCoins;
+                            tableCntry.Rows[country.Number].Cells[3].Value = ncCoins;
+                        });
+                    });
+                }
+            });
+
+            task.Start();
+
         }
+
         private void ModelingLoop()
         {
             Task mainLife = new Task(() =>
@@ -70,7 +91,7 @@ namespace TESTSH
                         for (int j = 0; j < Сountries.Count; j++)
                         {
                             Сountries[j].WriteBalance(countYear, i);
-                            Сountries[j].Coins.OnChange += new EventHandler(Update);
+                            //Сountries[j].Coins.OnChange += new EventHandler(Update);
                             for (int k = 1; k < 5; k++)//Можно сделать случайный выбор кто с кем торгует, но сделал просто с 4 ближайшими последующими
                             {
                                 Operation operation = new Operation();
@@ -193,7 +214,7 @@ namespace TESTSH
             
         }
             #endregion
-        }
+    }
     public static class EXT
     {
         public static int ToInt(this string str)
