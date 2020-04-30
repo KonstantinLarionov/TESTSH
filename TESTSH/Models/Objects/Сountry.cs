@@ -49,30 +49,24 @@ namespace TESTSH.Models.Objects
             return Coins.Where(x => x.Symbol == "Coin:" + Name).ToList();
         }
         public void AddOperation(TypeOperation type, int amount, Сountry country)
-        {
-            if (amount > MyBalance().Count / 2 && amount > country.MyBalance().Count / 2)
+        { //Тут будет переполнение
+
+            switch (type)
             {
-                return;
+                case TypeOperation.Receipt:
+                    ReceiptCoins(amount, "Coin:" + country.Name);
+                    country.AddOperation(TypeOperation.Expenditure, amount, this);
+                    Operations.Add(new Operation() { Amount = amount, Type = type, CountryFrom = country, DateCreate = DateTime.Now });
+                    break;
+                case TypeOperation.Expenditure:
+                    ExpenditureCoins(amount);
+                    country.AddOperation(TypeOperation.Receipt, amount, this);
+                    Operations.Add(new Operation() { Amount = amount, Type = type, CountryTo = country, DateCreate = DateTime.Now });
+                    break;
+                default:
+                    break;
             }
 
-            else
-            {
-                switch (type)
-                {
-                    case TypeOperation.Receipt:
-                        ReceiptCoins(amount, "Coin:" + country.Name);
-                        country.AddOperation(TypeOperation.Expenditure,amount, this);
-                        Operations.Add(new Operation() { Amount = amount, Type = type, CountryFrom = country, DateCreate = DateTime.Now });
-                        break;
-                    case TypeOperation.Expenditure:
-                        ExpenditureCoins(amount);
-                        country.AddOperation(TypeOperation.Receipt,amount, this);
-                        Operations.Add(new Operation() { Amount = amount, Type = type, CountryTo = country, DateCreate = DateTime.Now });
-                        break;
-                    default:
-                        break;
-                }
-            }
         }
     }
 }
